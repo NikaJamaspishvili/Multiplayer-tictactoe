@@ -21,7 +21,7 @@ function handleClick(result,index){
 
 if(!result && clickPermission){
 
-//setClickPermission(false);
+setClickPermission(false);
 
 let tempoArray=[...array];
 
@@ -29,7 +29,7 @@ tempoArray[index] = 'x';
 
 setArray(tempoArray);
 
-//checkWinner(tempoArray);
+checkWinner(tempoArray);
 
 handleBotClick(chosenBot,tempoArray,setArray,setClickPermission,checkWinner);
 
@@ -38,6 +38,7 @@ handleBotClick(chosenBot,tempoArray,setArray,setClickPermission,checkWinner);
 }
 
 function checkWinner(tempoArray){
+
 
 let won=false;
 
@@ -61,9 +62,10 @@ for(let i=0;i<winningCombinations.length;i++){
 
 const [a,b,c]=winningCombinations[i];
 
-if(array[a] !== '' && tempoArray[a] === tempoArray[b] && tempoArray[a] === tempoArray[c]){
+if(tempoArray[a] !== '' && tempoArray[a] === tempoArray[b] && tempoArray[a] === tempoArray[c]){
   setGameover(true);
   setClickPermission(false);
+
   won=true;
   if(tempoArray[a] === 'x'){
     setScoreX(scoreX + 1);
@@ -77,7 +79,7 @@ if(array[a] !== '' && tempoArray[a] === tempoArray[b] && tempoArray[a] === tempo
 }
 }
 
-//if game has been ended by draw
+//if game ended by draw
 
 if(won!==true && tempoArray.find(element => element === '') === undefined){
     setGameover(true);

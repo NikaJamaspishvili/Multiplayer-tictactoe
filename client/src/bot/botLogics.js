@@ -1,5 +1,8 @@
 const handleBotClick=(chosenBot,array,setArray,setClickPermission,checkWinner)=>{
 
+
+setClickPermission(true);
+
 if(chosenBot === 'drago'){
 
 //if player chose drago it means player wants easy game
@@ -7,8 +10,6 @@ if(chosenBot === 'drago'){
 //check if that numbers index is empty in array
 //if yes than change the array
 //else pick another number and repeat
-
-setClickPermission(true);
 
 randomAttack(array,setArray,checkWinner);
 
@@ -28,6 +29,7 @@ if(chosenBot === 'kriko'){
 defenceANDattack(array,setArray,randomAttack,checkWinner,'x');
 
 defenceANDattack(array,setArray,()=>{},checkWinner,'o');
+
 }
 
 }
@@ -72,7 +74,6 @@ const possibleCombinations = [
     setArray(tempoArray);
 
     checkWinner(tempoArray);
-
     return
   }
   
