@@ -16,11 +16,8 @@ const [wonBy,setWonBy]=useState('');
 const [scoreX,setScoreX]=useState(0);
 const [ScoreO,setScoreO]=useState(0);
 
-const audio=useRef(null);
-
 function handleClick(result,index){
 
-audio.current.play();
 
 if(!result && clickPermission){
 
@@ -103,8 +100,6 @@ function restartGame(){
 
 
 return  <div className="gameMainDiv">
-
-<audio ref={audio} src='../audio/deez-nuts-made-with-Voicemod.mp3'/>
 
 {gameover && <button onClick={restartGame}><FontAwesomeIcon icon={faArrowsRotate} /></button>}
 
