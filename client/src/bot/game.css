@@ -1,0 +1,49 @@
+.gameMainDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.boardWrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    box-shadow: 3px 3px 10px rgb(188, 13, 127);
+}
+
+.boardWrapper div{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(228, 228, 228);
+    border: 2px solid rgb(158, 84, 255);
+    color: rgb(212, 53, 223);
+    text-shadow: 2px 2px 5px rgb(220, 104, 220);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+.gameMainDiv button{
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: rgb(42, 42, 42);
+    cursor: pointer;
+}
+
+.scoreDiv{
+    display: flex;
+    gap: 40px;
+}
+
+.scoreDiv p{
+    color: rgb(255, 255, 255);
+    font-size: 2rem;
+    font-family: sans-serif;
+    font-weight: bolder;
+    transition: 2s ease;
+}
