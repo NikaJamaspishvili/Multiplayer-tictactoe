@@ -16,16 +16,19 @@ function Game({ chosenBot, multiplayer, socket }) {
   const [notifyMessage,setNotifyMessage] = useState('');
   const [firstMove,setFirstMove] = useState(false);
   const [seconds, setSeconds] = useState(5);
+  const [btnPressed,setBtnPressed] = useState(false);
 
   useEffect(() => {
-if(gameover === false){
-    if(seconds > 0){
+if(gameover === false && multiplayer){
+    if(seconds > 0 && btnPressed === true){
     const intervalId = setInterval(() => {
       setSeconds((prevSeconds) => prevSeconds - 1);
     }, 1000);
   
     return () => clearInterval(intervalId);
-    }else{
+    }
+    
+    if(seconds === 0){
       setGameover(true);      
      
       if(whoseTurn === 'x'){
@@ -37,7 +40,7 @@ if(gameover === false){
       }
     }
   }
-  }, [seconds,gameover === false]);
+  }, [seconds,gameover === false,btnPressed]);
 
 
 useEffect(() => {
@@ -50,6 +53,7 @@ if(multiplayer === 'true'){
    setWhoseTurn(object.playerTurn);
    setClickPermission(true);
    setSeconds(5);
+   setBtnPressed(true);
     };
     
     const restart = ()=>{
@@ -66,6 +70,7 @@ if(multiplayer === 'true'){
       setClickPermission(false);
       setGameover(false);
       setNotifyMessage(object.message);
+      setBtnPressed(false);
     }
 
     const handleRoomJoin = (object)=>{
@@ -77,6 +82,7 @@ if(multiplayer === 'true'){
     setWonBy('');
     setGameover(false);
     setNotification(false);
+    setSeconds(5);
 
     if(object.moveOption === 'x'){
       setFirstMove(true);
@@ -109,11 +115,12 @@ if(multiplayer === 'true'){
   function handleClick(result, index) {
     if (!result && clickPermission) {
 
-      if(!array.find(item => item === 'x') && firstMove!==true){
-        console.log('you canno press first')
+      if(multiplayer && !array.find(item => item === 'x') && firstMove!==true){
+        alert("you can't make the first move, because you aren't the creator of match game or other player hasn't joined yet");
       }else{
       setClickPermission(false);
       setSeconds(5);
+      setBtnPressed(true);
 
       let tempoArray = [...array];
       tempoArray[index] = whoseTurn;
@@ -204,7 +211,7 @@ socket.emit('sendArray', {tempoArray,playerTurn,scoreX,scoreO});
   return (
     <div className="gameMainDiv">
      
-     <p id='timer'>{seconds}</p>
+    {multiplayer && <p id='timer'>{seconds}</p>}
 
     {notification && <div className='disconnectNotification'> 
       <p>{notifyMessage}</p>
