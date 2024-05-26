@@ -82,14 +82,18 @@
     #playerStatement{
         margin-bottom: 0px;
         font-weight: lighter;
-        padding: 15px;
+        padding: 10px;
         color: rgb(209, 209, 209);
         font-size: 1.3rem;
     }
 
     #timer{
-        top:10px;
+        top:30px;
         font-size: 3rem;
         color: white;
+    }
+
+    .gameMainDiv{
+        margin-top:60px;
     }
 }
