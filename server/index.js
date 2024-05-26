@@ -30,7 +30,7 @@ io.on('connection', (socket) => {
         rooms.get(key).add(socket.id);
         socket.join(key);
         console.log('user with id ' + socket.id + ' has joined room ' + key);
-        socket.to(currentRoom).emit('joinedRoom',{message: 'user has joined the room',status:1});
+        socket.to(currentRoom).emit('joinedRoom',{message: 'user has joined the room',status:1,moveOption: 'x'});
         break;
       }
     }

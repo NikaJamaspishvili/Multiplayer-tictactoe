@@ -14,6 +14,31 @@ function Game({ chosenBot, multiplayer, socket }) {
   const [whoseTurn,setWhoseTurn]= useState('x');
   const [notification,setNotification] = useState(false);
   const [notifyMessage,setNotifyMessage] = useState('');
+  const [firstMove,setFirstMove] = useState(false);
+  const [seconds, setSeconds] = useState(5);
+
+  useEffect(() => {
+if(gameover === false){
+    if(seconds > 0){
+    const intervalId = setInterval(() => {
+      setSeconds((prevSeconds) => prevSeconds - 1);
+    }, 1000);
+  
+    return () => clearInterval(intervalId);
+    }else{
+      setGameover(true);      
+     
+      if(whoseTurn === 'x'){
+       setWonBy('o');
+       setScoreO(scoreO + 1);
+      }else{
+      setWonBy('x');
+      setScoreX(scoreX + 1);
+      }
+    }
+  }
+  }, [seconds,gameover === false]);
+
 
 useEffect(() => {
 
@@ -24,7 +49,7 @@ if(multiplayer === 'true'){
    setArray(object.tempoArray);
    setWhoseTurn(object.playerTurn);
    setClickPermission(true);
-
+   setSeconds(5);
     };
     
     const restart = ()=>{
@@ -33,6 +58,7 @@ if(multiplayer === 'true'){
       setClickPermission(true);
       setWonBy('');
       setWhoseTurn('x');
+      setSeconds(5);
     }
 
     const handleDisconnect = (object)=>{    
@@ -51,7 +77,13 @@ if(multiplayer === 'true'){
     setWonBy('');
     setGameover(false);
     setNotification(false);
+
+    if(object.moveOption === 'x'){
+      setFirstMove(true);
     }
+
+
+  }
 
     socket.on('clientRestartGame',restart)          //this connection handles restart function
 
@@ -76,7 +108,12 @@ if(multiplayer === 'true'){
 
   function handleClick(result, index) {
     if (!result && clickPermission) {
+
+      if(!array.find(item => item === 'x') && firstMove!==true){
+        console.log('you canno press first')
+      }else{
       setClickPermission(false);
+      setSeconds(5);
 
       let tempoArray = [...array];
       tempoArray[index] = whoseTurn;
@@ -90,6 +127,7 @@ if(multiplayer === 'true'){
         handleBotClick(chosenBot, tempoArray, setArray, setClickPermission, checkWinner);
       }
     }
+  }
   }
 
 //solve the array problem
@@ -158,6 +196,7 @@ socket.emit('sendArray', {tempoArray,playerTurn,scoreX,scoreO});
     setClickPermission(true);
     setWonBy('');
     setWhoseTurn('x');
+    setSeconds(5);
   
   {multiplayer && socket.emit('restartGame',{status:1})}
   }
@@ -165,6 +204,8 @@ socket.emit('sendArray', {tempoArray,playerTurn,scoreX,scoreO});
   return (
     <div className="gameMainDiv">
      
+     <p id='timer'>{seconds}</p>
+
     {notification && <div className='disconnectNotification'> 
       <p>{notifyMessage}</p>
      </div>}
