@@ -74,7 +74,7 @@
 #timer{
     position: absolute;
     color: white;
-    font-size: 2rem;
+    font-size: 3rem;
     top: 50px;
 }
 
@@ -83,7 +83,7 @@
         margin-bottom: 0px;
         font-weight: lighter;
         padding: 15px;
-        color: rgb(196, 195, 195);
+        color: rgb(209, 209, 209);
         font-size: 1.3rem;
     }
 
