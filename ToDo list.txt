@@ -1,5 +1,1 @@
-- first correct the winner checking
-
-- add audio
-
 - start working on multiplayer version

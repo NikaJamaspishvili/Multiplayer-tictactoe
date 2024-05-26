@@ -57,3 +57,13 @@
     color: white;
 }
 }
+
+
+.multiplayerGameDiv{
+    background-image: url('https://i.pinimg.com/736x/9f/db/3d/9fdb3d6bafe9083703e539c193ca9a74.jpg');
+    width: 100%;
+    height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

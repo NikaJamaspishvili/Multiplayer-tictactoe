@@ -50,3 +50,23 @@
     font-weight: bolder;
     transition: 2s ease;
 }
+
+#playerStatement{
+    color:white;
+    font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 50px;
+}
+
+.disconnectNotification{
+ position: absolute;
+ background-color: white;
+ border-radius: 20px;
+ width: 250px;
+ text-align: center;
+ padding: 30px;
+ font-family: sans-serif;
+}
+
+.disconnectNotification p{
+  color:red;
+}
