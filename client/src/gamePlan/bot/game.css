@@ -52,9 +52,10 @@
 }
 
 #playerStatement{
-    color:white;
+    color:rgb(221, 221, 221);
     font-family: 'Courier New', Courier, monospace;
     margin-bottom: 50px;
+    font-weight: lighter;
 }
 
 .disconnectNotification{
