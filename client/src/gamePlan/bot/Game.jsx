@@ -3,8 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX, faO, faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from "react";
 import { handleBotClick } from './botLogics.js';
+import BackArrow from '../../components/BackArrow.jsx';
 
-function Game({ chosenBot, multiplayer, socket }) {
+function Game({ chosenBot, multiplayer, socket,setBotPlay,setMultiplayer,setPlayerClicked }) {
   const [clickPermission, setClickPermission] = useState(true);
   const [array, setArray] = useState(["", "", "", "", "", "", "", "", ""]);
   const [gameover, setGameover] = useState(false);
@@ -210,7 +211,7 @@ socket.emit('sendArray', {tempoArray,playerTurn,scoreX,scoreO});
 
   return (
     <div className="gameMainDiv">
-     
+      <BackArrow id={'back'} multiplayer={multiplayer} setPlayerClicked={setPlayerClicked} setBotPlay={setBotPlay} setMultiplayer={setMultiplayer}/>
     {multiplayer && <p id='timer'>{seconds}</p>}
 
     {notification && <div className='disconnectNotification'> 

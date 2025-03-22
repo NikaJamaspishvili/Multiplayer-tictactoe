@@ -48,10 +48,9 @@ socket.emit('join_room',localStorage.getItem('roomId'));
   
   </div>:null}
 
-{botPlay && <BotPlayers />}
+{botPlay && <BotPlayers setBotPlay={setBotPlay} setMultiplayer={setMultiplayer}/>}
 
-{multiplayer && <div className='multiplayerGameDiv'> <Game multiplayer = 'true' socket={socket} /> </div>}
-
+{multiplayer && <div className='multiplayerGameDiv'> <Game multiplayer = 'true' socket={socket} setMultiplayer={setMultiplayer} setBotPlay={setBotPlay}/> </div>}
 
   </div>
   

@@ -79,6 +79,16 @@
     top: 50px;
 }
 
+#back{
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 50%;
+    padding: 15px;
+}
+
 @media only screen and (max-width:500px){
     #playerStatement{
         margin-bottom: 0px;

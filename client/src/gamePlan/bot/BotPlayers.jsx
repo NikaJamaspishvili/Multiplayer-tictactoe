@@ -2,13 +2,14 @@ import { useState } from 'react';
 
 import './botplayer.css';
 import Game from './Game';
+import BackArrow from '../../components/BackArrow';
 
-function BotPlayers() {
+function BotPlayers({setBotPlay,setMultiplayer}) {
 
  const [playerClicked,setPlayerClicked]=useState('');
 
   return  <div className='botPlayersWrapper' style={{backgroundImage:playerClicked.length > 0 ? "url('https://i.pinimg.com/736x/9f/db/3d/9fdb3d6bafe9083703e539c193ca9a74.jpg')": ''}}>
-  
+    <BackArrow setBotPlay={setBotPlay} setMultiplayer={setMultiplayer} id={'backArrow'}/>
   {playerClicked.length === 0 && <div className='difficultyWrapper'>
 
   <section onClick={()=>{setPlayerClicked('drago')}}>
@@ -31,7 +32,7 @@ function BotPlayers() {
 
 </div>}
 
-{playerClicked.length > 0 && <Game chosenBot={playerClicked}/>}
+{playerClicked.length > 0 && <Game chosenBot={playerClicked} setBotPlay={setBotPlay} setPlayerClicked={setPlayerClicked} setMultiplayer={setMultiplayer}/>}
 
   </div>
 }
